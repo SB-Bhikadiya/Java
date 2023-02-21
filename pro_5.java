@@ -1,52 +1,68 @@
-//pro 5
-import java.util.*;
+import java.util.Scanner;
 
-public class pro_5 
-{
-    public static void main(String args[])
-    {
-        Scanner sc = new Scanner(System.in);
+public class pro_5 {
+    public static void main(String[] args) {
+        // Create scanner object to get user input
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter String : ");
-        String str = sc.nextLine();
+        // Prompt user to enter a string
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
 
-        System.out.println("In Which case Do you want to change?");
-        System.out.println("1.UPPERCASE");
-        System.out.println("2.lowercase");
-        System.out.println("3.Sentence case");
-        System.out.println("4.tOGGLE cASE");
-        System.out.print("Enter Your Choic : ");
-        int choic = sc.nextInt();
+        // Prompt user to choose a case conversion option
+        System.out.println("Choose a case conversion option:");
+        System.out.println("1. UPPERCASE");
+        System.out.println("2. lowercase");
+        System.out.println("3. Sentence case");
+        System.out.println("4. tOGGLE cASE");
+        int choice = scanner.nextInt();
 
-        switch(choic)
-        {
+        // Perform the chosen case conversion
+        String output = "";
+        switch (choice) {
             case 1:
-                System.out.println("Output : "+str.toUpperCase());
+                output = input.toUpperCase();
                 break;
             case 2:
-                System.out.println("Output : "+str.toLowerCase());
+                output = input.toLowerCase();
                 break;
             case 3:
-                char ch[] = str.toCharArray();
-
-                for(int i=0;i<str.length();i++)
-                {
-                    if(ch[i]>=97 && ch[i]<=122)
-                    {
-                        // System.out.print("hello");
-                       char temp=Character.toUpperCase(ch[i]);
-                       System.out.print(temp);
-                    }
-                    if(str.charAt(i)=='.'  && str.charAt(i+1)>=97 && str.charAt(i+1)<=122)
-                    {
-                      //  str.charAt(i+2) = str.charAt(i+2) - 32;
-                    }
-                }
-
-                System.out.println("Output : "+str);
-
+                output = toSentenceCase(input);
                 break;
-
+            case 4:
+                output = toToggleCase(input);
+                break;
+            default:
+                System.out.println("Invalid choice. Please choose a valid option.");
+                return;
         }
+
+        // Display the converted string
+        System.out.println("Output: " + output);
+    }
+
+    // Helper method to convert a string to sentence case
+    private static String toSentenceCase(String input) {
+        if (input.length() == 0) {
+            return "";
+        }
+        String firstChar = input.substring(0, 1).toUpperCase();
+        String rest = input.substring(1).toLowerCase();
+        return firstChar + rest;
+    }
+
+    // Helper method to convert a string to toggle case
+    private static String toToggleCase(String input) {
+        StringBuilder result = new StringBuilder();
+        for (char c : input.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                result.append(Character.toLowerCase(c));
+            } else if (Character.isLowerCase(c)) {
+                result.append(Character.toUpperCase(c));
+            } else {
+                result.append(c);
+            }
+        }
+        return result.toString();
     }
 }

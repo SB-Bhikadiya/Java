@@ -1,7 +1,6 @@
 
 import java.applet.Applet;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 /*<applet code="pro_2" width=1000 height=500></applet>*/
 
 public class pro_2 extends Applet {
